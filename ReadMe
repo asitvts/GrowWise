@@ -1,0 +1,162 @@
+GrowWise
+
+GrowWise is a stock portfolio management system that allows users to manage their investments, track stock performance, and evaluate their future returns. It provides real-time stock data, portfolio tracking, and forecasting capabilities, all through a clean and responsive web interface.
+
+Table of Contents
+
+Project Overview
+Features
+Installation
+Configuration
+Usage
+API Documentation
+Testing
+Contributing
+License
+Authors
+Contact
+Project Overview
+
+GrowWise is a web-based application designed to help users manage their stock portfolio. It integrates near real-time stock prices, allows users to add stocks to their portfolio, tracks their investments' performance, and provides various tools to aid in their investing journey.
+
+The backend is built using FastAPI and integrates with Firebase for authentication. The frontend is built with React and utilizes TailwindCSS for styling. For real-time stock data, it uses APIs like Polygon.io and Tiingo.
+
+Features
+
+User Authentication: Secure sign-up, login, and email verification using Firebase.
+
+Portfolio Management: Users can add stocks to their portfolio and track performance.
+
+Real-Time Stock Data: Fetch live stock prices(at max 1 day old prices) from Polygon.io and Tiingo APIs.
+
+Investment Tracking: View your total amount invested, portfolio value, profit/loss, and best-performing stocks.
+
+Graphing: Compare stock performance using graphs for a specified time period (e.g., 30 days).
+
+Future Valuation Estimation: Estimate the future valuation of a portfolio based on current data.
+
+Analyze Risk and Diversity of your Portfolio: Get recommendations on the diversity of your portfolio and also get risk management tips.
+
+Installation
+
+To run GrowWise locally, follow the steps below:
+
+Prerequisites
+Python 3.8 or higher
+Node.js (for frontend)
+Firebase project credentials (for authentication)
+Dependencies listed in requirements.txt (for backend currently not available)
+Backend Setup (FastAPI)
+Clone the repository:
+git clone https://github.com/asitvts/GrowWise.git
+cd GrowWise/backend
+Create and activate a virtual environment:
+python3 -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install the required Python packages:
+pip install -r requirements.txt
+Set up Firebase credentials:
+Create a Firebase project and obtain the service account credentials JSON file.
+Add your Firebase credentials to an .env file:
+FIREBASE_SERVICE_ACCOUNT_JSON=<your-firebase-credentials-json>
+Run the FastAPI server:
+uvicorn main:app --reload
+The backend should now be running at http://127.0.0.1:8000.
+
+Frontend Setup (React (Vite))
+Navigate to the frontend directory:
+cd ../frontend
+Install the dependencies:
+npm install
+Run the development server:
+npm run dev
+The frontend should now be running at http://localhost:5173.
+
+Configuration
+
+Firebase Configuration: Make sure to set up Firebase authentication for the project. You can follow the Firebase documentation to generate service account credentials and add them to your .env file.
+Stock Data APIs: To fetch live stock data, you will need access to Polygon.io and Tiingo APIs. Sign up for accounts on these services and include the API keys in your .env file.
+Example .env file:
+
+FIREBASE_SERVICE_ACCOUNT_JSON=<your-firebase-credentials-json>
+POLYGON_API_KEY=<your-polygon-api-key>
+TIINGO_API_KEY=<your-tiingo-api-key>
+Usage
+
+Once the application is set up and running, users can:
+
+Sign up and Log in: Use the Firebase authentication system to create an account and log in.
+
+Add Stocks to Portfolio: Users can select stocks they wish to add to their portfolio by providing stock symbols (e.g., AAPL, TSLA).
+
+Track Portfolio: Users can view the value of their portfolio, including total investment, profit/loss, and performance of individual stocks.
+
+View Stock Graphs: Compare the price trends of two stocks over a period of 30 days.
+
+Portfolio Distribution Piecharts are also available.
+
+Estimate Future Portfolio Value: The app provides projections of the portfolio's future value based on current performance.
+
+One can also chesk their transaction histroy from the history section in the sidebar.
+
+API Documentation
+
+POST /login
+Description: Logs a user in.
+Request:
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+Response:
+{
+  "token": "<jwt-token>"
+}
+GET /stocks/{symbol}
+Description: Fetches live data for a stock symbol.
+Parameters:
+symbol: Stock symbol (e.g., AAPL, TSLA)
+Response:
+{
+  "symbol": "AAPL",
+  "current_price": 150.75,
+  "high": 155.00,
+  "low": 148.50
+}
+POST /stocks/portfolio
+Description: Adds a stock to the user's portfolio.
+Request:
+{
+  "symbol": "AAPL",
+  "quantity": 10
+}
+Response:
+{
+  "message": "Stock added to portfolio successfully"
+}
+Testing
+
+To run the tests for the backend:
+
+Install the testing dependencies:
+pip install -r requirements-dev.txt(not added for now)
+Run the tests:
+pytest
+Contributing
+
+We welcome contributions! Here's how you can help:
+
+Fork the repository.
+Create a new branch.
+Make your changes.
+Open a pull request with a description of your changes.
+Please make sure to follow the code style and testing guidelines. Contributions should be made in the form of pull requests.
+
+
+Authors
+
+Asit Vats: asitvts
+Contact
+
+For any issues or support, please reach out to us at:
+Email: asitvts@example.com
